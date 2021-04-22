@@ -21,11 +21,12 @@ jobs:
     - name: Build
       run: go build -v ./...
 
-    - name: Validate Coverage Unit Test
+    - name: Validate coverage Unit Test
       run: |
-      for i in $(ls -C1)
-      do
-        echo [ ------ Unit Test $i ------ ]
-        go test -v ./...
-      done
+          ls
+          for i in $(ls -C1)
+          do
+            echo [ ------ Unit Test $i ------ ]
+            go test -v ./...
+          done
       
