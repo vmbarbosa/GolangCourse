@@ -40,11 +40,18 @@ func getTasks(w http.ResponseWriter, r *http.Request) {
 func getTask(w http.ResponseWriter, r *http.Request) {
 	identifier := mux.Vars(r)
 	taskID, err := strconv.Atoi(identifier["id"])
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 	if err != nil {
-		fmt.Fprintf(w, "Ingrese un id valido")
+		fmt.Fprintf(w, "ID invalido")
+		return
+	}
+	if taskID >= len(tasks) || taskID <= 0 {
+		fmt.Fprintf(w, "ID fuera del rango")
+		return
 	}
 	task := tasks[taskID-1]
-	w.Header().Set("Content-Type", "application/json")
+
 	json.NewEncoder(w).Encode(task)
 }
 
@@ -53,8 +60,8 @@ func createTask(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Fprintf(w, "Ingrese una tarea valida")
+		return
 	}
-
 	json.Unmarshal(reqBody, &newTask)
 
 	newTask.ID = len(tasks) + 1
