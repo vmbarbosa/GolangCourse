@@ -19,12 +19,10 @@ jobs:
         go-version: 1.15
 
     - name: Build
-      run: |
-          cd $GOPATH 
-          pwd
-          go list ... | grep gorilla
-          o get -v -u github.com/gorilla/mux
-          sudo go build -v ./...
+      run: go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
 
     - name: Validate coverage Unit Test
       run: |
