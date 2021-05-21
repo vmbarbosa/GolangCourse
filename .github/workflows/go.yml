@@ -20,13 +20,8 @@ jobs:
 
     - name: Build
       run: |
-          ls
-          go env
-          cd /home
-          ls
-          set GOPATH=/home/user/go/
-          go env
-          go get -v -u github.com/gorilla/mux
+          go get github.com/gorilla
+          go get github.com/gorilla/mux
           sudo go build -v ./...
 
     - name: Validate coverage Unit Test
