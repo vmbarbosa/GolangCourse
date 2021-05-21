@@ -22,7 +22,8 @@ jobs:
       run: |
           ls
           go env
-          go get github.com/gorilla/mux
+          export PATH=$PATH:$GOPATH/bin
+          go get -v -u github.com/gorilla/mux
           sudo go build -v ./...
 
     - name: Validate coverage Unit Test
