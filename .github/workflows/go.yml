@@ -20,9 +20,11 @@ jobs:
 
     - name: Build
       run: |
-          go help gopath
-          go get ./...
-          go mod vendor
+          ls
+          go env
+          set GOPATH=/home/user/go/
+          go get -v -u github.com/gorilla/mux
+          sudo go build -v ./...
 
     - name: Validate coverage Unit Test
       run: |
