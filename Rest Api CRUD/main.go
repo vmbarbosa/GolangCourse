@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -38,24 +39,31 @@ func getTasks(w http.ResponseWriter, r *http.Request) {
 }
 
 func getTask(w http.ResponseWriter, r *http.Request) {
+	log.Println(r)
 	identifier := mux.Vars(r)
+	log.Println(identifier["id"])
 	taskID, err := strconv.Atoi(identifier["id"])
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if err != nil {
+		log.Println("ID invalido")
 		fmt.Fprintf(w, "ID invalido")
 		return
 	}
-	if taskID >= len(tasks) || taskID <= 0 {
+	log.Println("Task length:", len(tasks))
+	if taskID > len(tasks) || taskID <= 0 {
+		log.Println("ID fuera del rango")
 		fmt.Fprintf(w, "ID fuera del rango")
 		return
 	}
 	task := tasks[taskID-1]
-
+	log.Println(task)
 	json.NewEncoder(w).Encode(task)
 }
 
 func createTask(w http.ResponseWriter, r *http.Request) {
+	log.Println(w)
+	log.Println(r)
 	var newTask task
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
