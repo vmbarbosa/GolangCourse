@@ -20,6 +20,12 @@ jobs:
 
     - name: Build
       run: |
+          export GOROOT=$HOME/bin/go
+          export GOBIN=$GOROOT/bin
+          export GOPATH=$HOME/golang
+          export PATH=$PATH:$GOBIN
+          go get github.com/mattn/gom
+          gom install
           sudo go build -v ./...
 
     - name: Validate coverage Unit Test
