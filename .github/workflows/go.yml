@@ -20,8 +20,9 @@ jobs:
 
     - name: Build
       run: |
+          sudo go env -w GOPATH=/src
           sudo go get ./...
-          go build -v ./...
+          sudo go build -v ./...
 
     - name: Validate coverage Unit Test
       run: |
