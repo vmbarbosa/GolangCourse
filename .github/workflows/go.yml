@@ -20,6 +20,7 @@ jobs:
 
     - name: Build
       run: |
+          go help gopath
           go get ./...
           go mod vendor
 
