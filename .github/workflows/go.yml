@@ -20,8 +20,7 @@ jobs:
 
     - name: Build
       run: |
-          set GOPATH=$HOME/golang
-          set GOROOT=$HOME/bin/go
+          go get github.com/gorilla/mux
           sudo go build -v ./...
 
     - name: Validate coverage Unit Test
