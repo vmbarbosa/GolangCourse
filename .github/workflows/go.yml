@@ -20,7 +20,7 @@ jobs:
 
     - name: Build
       run: |
-           go get -u github.com/gorilla/mux
+          go get -u github.com/gorilla/mux
           go build -v ./...
 
     - name: Test
