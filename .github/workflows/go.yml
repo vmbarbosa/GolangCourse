@@ -20,6 +20,8 @@ jobs:
 
     - name: Build
       run: |
+          ls
+          go env
           go get github.com/gorilla/mux
           sudo go build -v ./...
 
