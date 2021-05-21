@@ -20,8 +20,10 @@ jobs:
 
     - name: Build
       run: |
-          go get github.com/gorilla
-          go get github.com/gorilla/mux
+          ls -l /usr/local/go/src/github.com | grep gorilla
+          cd $GOPATH
+          go list ... | grep gorilla
+          o get -v -u github.com/gorilla/mux
           sudo go build -v ./...
 
     - name: Validate coverage Unit Test
