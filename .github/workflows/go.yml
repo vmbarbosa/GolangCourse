@@ -22,7 +22,10 @@ jobs:
       run: |
           ls
           go env
+          cd /home
+          ls
           set GOPATH=/home/user/go/
+          go env
           go get -v -u github.com/gorilla/mux
           sudo go build -v ./...
 
