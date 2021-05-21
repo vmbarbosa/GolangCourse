@@ -20,11 +20,8 @@ jobs:
 
     - name: Build
       run: |
-          ls
-          go env
-          export PATH=$PATH:$GOPATH/bin
-          go get -v -u github.com/gorilla/mux
-          sudo go build -v ./...
+          go get ./...
+          go mod vendor
 
     - name: Validate coverage Unit Test
       run: |
