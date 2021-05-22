@@ -19,14 +19,16 @@ jobs:
         go-version: 1.15
 
     - name: Build
-      run: go build -v ./...
+      run: |
+          go get -u github.com/gorilla/mux
+          go build -v ./...
 
     - name: Validate coverage Unit Test
       run: |
           ls
           for i in $(ls -C1)
           do
-            echo [ ------ Unit Test $i ------ ]
+            echo [ -------------- Unit Test $i ---------------- ]
             go test -v ./...
           done
       
